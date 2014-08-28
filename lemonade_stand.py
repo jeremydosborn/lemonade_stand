@@ -1,13 +1,20 @@
 #!/usr/bin/env python
 
+""" Simple version of classic lemonade stand game. Written in Python 2.7 
+"""
+
 __author__ = 'jeremy osborn'
 
 import random
-import sys
 
 
 class LemonadeStand:
+
+    """ LemonadeStand class with three methods - make_lemonade, sell_lemonade, display_data.
+    """
+
     def __init__(self):
+        """ setup initial parameters. weather is randomized."""
         self.day = 0
         self.cash = 100
         self.lemonade = 0
@@ -15,6 +22,7 @@ class LemonadeStand:
         self.weather = random.randrange(50, 100)
 
     def make_lemonade(self):
+        """ Make lemonade to sell later. Cost to make lemonade changes each day."""
         while True:
             try:
                 lemonade = int(raw_input('How many cups of lemonade will you make (1-10)? '))
@@ -23,7 +31,7 @@ class LemonadeStand:
                 else:
                     print('Please choose a number between 1 and 10.')
                     continue
-            except ValueError, e:
+            except ValueError:
                 print ('Please choose a number between 1-10.')
                 continue
         self.lemonade += lemonade
@@ -34,6 +42,7 @@ class LemonadeStand:
         print('You made ' + str(lemonade) + ' cups of lemonade!\n')
 
     def sell_lemonade(self):
+        """ Sell lemonade that you have made previously. Bad weather and/or high price will discount net demand. """
         while True:
             try:
                 price = int(raw_input('How many cents will you charge for a cup of lemonade? (0-100) '))
@@ -69,6 +78,7 @@ class LemonadeStand:
         print('You sold ' + str(demand) + ' cup(s) of lemonade and earned $' + str(revenue) + ' dollars!\n')
 
     def display_data(self, name):
+        """ Display all data for the lemonade stand."""
         if self.day == 0:
             print('\nWelcome ' + name + '!\n')
         print('Day: ' + str(self.day))
@@ -80,6 +90,10 @@ class LemonadeStand:
 
 
 def main():
+
+    """ Create new LemonadeStand object and play game, or exit.
+    """
+
     choice = ''
     while choice not in ['y', 'n']:
         choice = raw_input('Create a new lemonade stand? (y/n) ')
